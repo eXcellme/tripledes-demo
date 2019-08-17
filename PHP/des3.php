@@ -19,6 +19,7 @@ class DES
         if (!in_array(strtolower($cipher), openssl_get_cipher_methods())) {
             throw  new  \Exception("Your cipher is not allowed. Pls choose one in openssl_get_cipher_methods().");
         }
+        $this->cipher = $cipher;
         $this->key = $key;
     }
 
