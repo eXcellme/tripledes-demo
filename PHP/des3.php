@@ -11,7 +11,7 @@ class DES
      * @param string $iv
      * @throws Exception
      */
-    public function __construct(string $cipher, string $key, string $iv = '')
+    public function __construct(string $cipher, string $key)
     {
         if (!extension_loaded('openssl')) {
             throw  new  \Exception("OpenSSL extension should be required.");
@@ -29,7 +29,7 @@ class DES
      */
     public function encrypt($value)
     {
-        return openssl_encrypt($value, 'des-ede3', $this->key);
+        return openssl_encrypt($value, $this->cipher, $this->key);
     }
 
     /**
@@ -39,6 +39,6 @@ class DES
      */
     public function decrypt($value)
     {
-        return openssl_decrypt($value, "DES-EDE3", $this->key);
+        return openssl_decrypt($value, $this->cipher, $this->key);
     }
 }
